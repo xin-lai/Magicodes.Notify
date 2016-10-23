@@ -21,23 +21,41 @@ namespace Magicodes.Notify.SignalR.Builder
         {
             return new NotifyBuilder();
         }
-
+        /// <summary>
+        /// 设置连接时处理逻辑
+        /// </summary>
+        /// <param name="onConnected"></param>
+        /// <returns></returns>
         public NotifyBuilder WithOnConnected(Func<HubCallerContext, IGroupManager, NotifyGroupInfo> onConnected)
         {
             OnConnected = onConnected;
             return this;
         }
+        /// <summary>
+        /// 设置连接断开时处理逻辑
+        /// </summary>
+        /// <param name="onDisconnected"></param>
+        /// <returns></returns>
         public NotifyBuilder WithOnDisconnected(Action<HubCallerContext, IGroupManager> onDisconnected)
         {
             OnDisconnected = onDisconnected;
             return this;
         }
-
+        /// <summary>
+        /// 设置重连时的处理逻辑
+        /// </summary>
+        /// <param name="onReconnected"></param>
+        /// <returns></returns>
         public NotifyBuilder WithOnReconnected(Action<HubCallerContext, IGroupManager> onReconnected)
         {
             OnReconnected = onReconnected;
             return this;
         }
+        /// <summary>
+        /// 设置获取通知列表的处理逻辑
+        /// </summary>
+        /// <param name="getNofityListByGroupFunc"></param>
+        /// <returns></returns>
         public NotifyBuilder WithGetNofityListByGroupFunc(Func<IQueryable<INotifyInfo>, string, List<INotifyInfo>> getNofityListByGroupFunc)
         {
             GetNofityListByGroupFunc = getNofityListByGroupFunc;

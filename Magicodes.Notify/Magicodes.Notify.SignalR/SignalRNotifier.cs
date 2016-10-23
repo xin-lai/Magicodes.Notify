@@ -29,9 +29,15 @@ namespace Magicodes.Notify.SignalR
         internal static Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         internal static Action<HubCallerContext, IGroupManager> OnReconnected = null;
         internal static Func<IQueryable<INotifyInfo>, string, List<INotifyInfo>> GetNofityListByGroupFunc = null;
+        /// <summary>
+        /// 获取通知列表
+        /// </summary>
+        /// <param name="query">查询条件</param>
+        /// <param name="group">组名称</param>
+        /// <returns></returns>
         public List<INotifyInfo> GetNofityListByGroup(IQueryable<INotifyInfo> query = null, string group = null)
         {
-            if (GetNofityListByGroupFunc==null)
+            if (GetNofityListByGroupFunc == null)
             {
                 throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
             }
