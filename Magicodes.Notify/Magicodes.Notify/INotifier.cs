@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,9 +21,10 @@ namespace Magicodes.Notify
         /// <summary>
         /// 获取通知列表
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="group"></param>
+        /// <param name="wherePredicate"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        List<INotifyInfo> GetNofityListByGroup(IQueryable<INotifyInfo> query = null, string group = null);
+        List<INotifyInfo> GetNofityList(Expression<Func<INotifyInfo, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10);
     }
 }

@@ -33,10 +33,6 @@ namespace Magicodes.Notify
         string Href { get; set; }
         
         /// <summary>
-        /// 是否已经阅读
-        /// </summary>
-        bool HasRead { get; set; }
-        /// <summary>
         /// 任务是否已完成
         /// </summary>
         bool IsTaskFinish { get; set; }

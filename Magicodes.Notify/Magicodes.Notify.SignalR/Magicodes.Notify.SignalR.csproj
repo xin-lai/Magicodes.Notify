@@ -32,8 +32,8 @@
     <DocumentationFile>bin\Release\Magicodes.Notify.SignalR.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    <Reference Include="Magicodes.Notify, Version=1.0.6141.1308, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magicodes.Notify.1.0.6141.1308\lib\net45\Magicodes.Notify.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -84,12 +84,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Magicodes.Notify\Magicodes.Notify.csproj">
-      <Project>{21e88b81-3b51-4d72-9e46-689bc0b7c696}</Project>
-      <Name>Magicodes.Notify</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

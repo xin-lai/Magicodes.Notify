@@ -1,10 +1,10 @@
 ﻿using Magicodes.Notify.SignalR.Builder;
 using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,21 +28,8 @@ namespace Magicodes.Notify.SignalR
         internal static Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
         internal static Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         internal static Action<HubCallerContext, IGroupManager> OnReconnected = null;
-        internal static Func<IQueryable<INotifyInfo>, string, List<INotifyInfo>> GetNofityListByGroupFunc = null;
-        /// <summary>
-        /// 获取通知列表
-        /// </summary>
-        /// <param name="query">查询条件</param>
-        /// <param name="group">组名称</param>
-        /// <returns></returns>
-        public List<INotifyInfo> GetNofityListByGroup(IQueryable<INotifyInfo> query = null, string group = null)
-        {
-            if (GetNofityListByGroupFunc == null)
-            {
-                throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
-            }
-            return GetNofityListByGroupFunc(query, group);
-        }
+        internal static Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> GetNofityListByGroupFunc = null;
+
         /// <summary>
         /// 通知
         /// </summary>
@@ -58,6 +45,21 @@ namespace Magicodes.Notify.SignalR
             {
                 _context.Clients.Group(group).Notify(notify);
             }
+        }
+        /// <summary>
+        /// 获取通知列表
+        /// </summary>
+        /// <param name="wherePredicate"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<INotifyInfo> GetNofityList(Expression<Func<INotifyInfo, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10)
+        {
+            if (GetNofityListByGroupFunc == null)
+            {
+                throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
+            }
+            return GetNofityListByGroupFunc(wherePredicate, pageIndex, pageSize);
         }
     }
 }

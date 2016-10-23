@@ -3,15 +3,19 @@ using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Magicodes.Notify.SignalR.Builder
 {
-    internal class NotifyBuilder
+    /// <summary>
+    /// 设置
+    /// </summary>
+    public class NotifyBuilder
     {
         Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
         Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         Action<HubCallerContext, IGroupManager> OnReconnected = null;
-        Func<IQueryable<INotifyInfo>, string, List<INotifyInfo>> GetNofityListByGroupFunc = null;
+        Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> GetNofityListByGroupFunc = null;
 
         /// <summary>
         ///     创建实例
@@ -56,7 +60,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="getNofityListByGroupFunc"></param>
         /// <returns></returns>
-        public NotifyBuilder WithGetNofityListByGroupFunc(Func<IQueryable<INotifyInfo>, string, List<INotifyInfo>> getNofityListByGroupFunc)
+        public NotifyBuilder WithGetNofityListByGroupFunc(Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> getNofityListByGroupFunc)
         {
             GetNofityListByGroupFunc = getNofityListByGroupFunc;
             return this;
