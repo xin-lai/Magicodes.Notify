@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using Magicodes.Notify.SignalR.Helper;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,27 @@ namespace Magicodes.Notify.SignalR.Builder
     /// <summary>
     /// 设置
     /// </summary>
-    public class NotifyBuilder
+    public class NotifyBuilder<T> where T : INotifyInfo
     {
         Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
         Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         Action<HubCallerContext, IGroupManager> OnReconnected = null;
-        Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> GetNofityListByGroupFunc = null;
+        Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
 
         /// <summary>
         ///     创建实例
         /// </summary>
         /// <returns></returns>
-        public static NotifyBuilder Create()
+        public static NotifyBuilder<T> Create()
         {
-            return new NotifyBuilder();
+            return new NotifyBuilder<T>();
         }
         /// <summary>
         /// 设置连接时处理逻辑
         /// </summary>
         /// <param name="onConnected"></param>
         /// <returns></returns>
-        public NotifyBuilder WithOnConnected(Func<HubCallerContext, IGroupManager, NotifyGroupInfo> onConnected)
+        public NotifyBuilder<T> WithOnConnected(Func<HubCallerContext, IGroupManager, NotifyGroupInfo> onConnected)
         {
             OnConnected = onConnected;
             return this;
@@ -40,7 +41,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="onDisconnected"></param>
         /// <returns></returns>
-        public NotifyBuilder WithOnDisconnected(Action<HubCallerContext, IGroupManager> onDisconnected)
+        public NotifyBuilder<T> WithOnDisconnected(Action<HubCallerContext, IGroupManager> onDisconnected)
         {
             OnDisconnected = onDisconnected;
             return this;
@@ -50,7 +51,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="onReconnected"></param>
         /// <returns></returns>
-        public NotifyBuilder WithOnReconnected(Action<HubCallerContext, IGroupManager> onReconnected)
+        public NotifyBuilder<T> WithOnReconnected(Action<HubCallerContext, IGroupManager> onReconnected)
         {
             OnReconnected = onReconnected;
             return this;
@@ -60,7 +61,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="getNofityListByGroupFunc"></param>
         /// <returns></returns>
-        public NotifyBuilder WithGetNofityListByGroupFunc(Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> getNofityListByGroupFunc)
+        public NotifyBuilder<T> WithGetNofityListByGroupFunc(Func<Expression<Func<T, bool>>, int, int, List<T>> getNofityListByGroupFunc)
         {
             GetNofityListByGroupFunc = getNofityListByGroupFunc;
             return this;
@@ -71,10 +72,10 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         public void Build()
         {
-            SignalRNotifier.OnConnected = OnConnected;
-            SignalRNotifier.OnDisconnected = OnDisconnected;
-            SignalRNotifier.OnReconnected = OnReconnected;
-            SignalRNotifier.GetNofityListByGroupFunc = GetNofityListByGroupFunc;
+            NotifierHelper.OnConnected = OnConnected;
+            NotifierHelper.OnDisconnected = OnDisconnected;
+            NotifierHelper.OnReconnected = OnReconnected;
+            SignalRNotifier<T>.GetNofityListByGroupFunc = GetNofityListByGroupFunc;
         }
     }
 }

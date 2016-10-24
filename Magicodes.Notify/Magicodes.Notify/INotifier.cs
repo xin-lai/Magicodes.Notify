@@ -10,14 +10,14 @@ namespace Magicodes.Notify
     /// <summary>
     /// 通知者
     /// </summary>
-    public interface INotifier
+    public interface INotifier<T> where T : INotifyInfo
     {
         /// <summary>
         /// 通知
         /// </summary>
         /// <param name="notify"></param>
         /// <param name="group"></param>
-        void NotifyTo(INotifyInfo notify, string group = null);
+        void NotifyTo(T notify, string group = null);
         /// <summary>
         /// 获取通知列表
         /// </summary>
@@ -25,6 +25,6 @@ namespace Magicodes.Notify
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        List<INotifyInfo> GetNofityList(Expression<Func<INotifyInfo, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10);
+        List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10);
     }
 }

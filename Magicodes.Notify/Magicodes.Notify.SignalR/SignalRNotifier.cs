@@ -11,31 +11,55 @@ using System.Threading.Tasks;
 
 namespace Magicodes.Notify.SignalR
 {
-    public class SignalRNotifier : INotifier
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SignalRNotifier<T> : INotifier<T> where T : INotifyInfo
     {
         /// <summary>
         /// Hub代理
         /// </summary>
         IHubContext _context { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public SignalRNotifier()
         {
             _context = GlobalHost.ConnectionManager.GetHubContext<NotifyHub>();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_context"></param>
         public SignalRNotifier(IHubContext _context)
         {
             this._context = _context;
         }
-        internal static Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
-        internal static Action<HubCallerContext, IGroupManager> OnDisconnected = null;
-        internal static Action<HubCallerContext, IGroupManager> OnReconnected = null;
-        internal static Func<Expression<Func<INotifyInfo, bool>>, int, int, List<INotifyInfo>> GetNofityListByGroupFunc = null;
+        
+        internal static Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
 
+        /// <summary>
+        /// 获取通知列表
+        /// </summary>
+        /// <param name="wherePredicate"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10)
+        {
+            if (GetNofityListByGroupFunc == null)
+            {
+                throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
+            }
+            return GetNofityListByGroupFunc(wherePredicate, pageIndex, pageSize);
+        }
         /// <summary>
         /// 通知
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="notify"></param>
         /// <param name="group"></param>
-        public void NotifyTo(INotifyInfo notify, string group = null)
+        public void NotifyTo(T notify, string group = null)
         {
             if (group == null)
             {
@@ -45,21 +69,6 @@ namespace Magicodes.Notify.SignalR
             {
                 _context.Clients.Group(group).Notify(notify);
             }
-        }
-        /// <summary>
-        /// 获取通知列表
-        /// </summary>
-        /// <param name="wherePredicate"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<INotifyInfo> GetNofityList(Expression<Func<INotifyInfo, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10)
-        {
-            if (GetNofityListByGroupFunc == null)
-            {
-                throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
-            }
-            return GetNofityListByGroupFunc(wherePredicate, pageIndex, pageSize);
         }
     }
 }
