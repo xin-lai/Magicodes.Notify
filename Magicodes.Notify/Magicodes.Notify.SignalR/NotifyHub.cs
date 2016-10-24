@@ -18,15 +18,19 @@ namespace Magicodes.Notify.SignalR
         /// </summary>
         /// <param name="notifyInfo"></param>
         /// <param name="group"></param>
-        public void Notify(INotifyInfo notifyInfo, string group = null)
+        public void Notify(object notifyInfo, string group)
         {
-            if (group == null)
+            if (NotifierHelper.OnClientNotify != null && notifyInfo != null)
             {
-                Clients.All.Notify(notifyInfo);
-            }
-            else
-            {
-                Clients.Group(group).Notify(notifyInfo);
+                var notify = NotifierHelper.OnClientNotify(notifyInfo.ToString());
+                if (string.IsNullOrEmpty(group))
+                {
+                    Clients.All.Notify(notify);
+                }
+                else
+                {
+                    Clients.Group(group).Notify(notify);
+                }
             }
         }
         /// <summary>

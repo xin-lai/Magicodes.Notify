@@ -17,6 +17,7 @@ namespace Magicodes.Notify.SignalR.Builder
         Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         Action<HubCallerContext, IGroupManager> OnReconnected = null;
         Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
+        Func<string, INotifyInfo> OnClientNotify = null;
 
         /// <summary>
         ///     创建实例
@@ -57,6 +58,17 @@ namespace Magicodes.Notify.SignalR.Builder
             return this;
         }
         /// <summary>
+        /// 设置客户端通知事件逻辑
+        /// </summary>
+        /// <param name="onClientNotify"></param>
+        /// <returns></returns>
+        public NotifyBuilder<T> WithOnClientNotify(Func<string, INotifyInfo> onClientNotify)
+        {
+            OnClientNotify = onClientNotify;
+            return this;
+        }
+
+        /// <summary>
         /// 设置获取通知列表的处理逻辑
         /// </summary>
         /// <param name="getNofityListByGroupFunc"></param>
@@ -75,6 +87,7 @@ namespace Magicodes.Notify.SignalR.Builder
             NotifierHelper.OnConnected = OnConnected;
             NotifierHelper.OnDisconnected = OnDisconnected;
             NotifierHelper.OnReconnected = OnReconnected;
+            NotifierHelper.OnClientNotify = OnClientNotify;
             SignalRNotifier<T>.GetNofityListByGroupFunc = GetNofityListByGroupFunc;
         }
     }

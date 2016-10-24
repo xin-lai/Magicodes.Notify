@@ -70,5 +70,21 @@ namespace Magicodes.Notify.SignalR
                 _context.Clients.Group(group).Notify(notify);
             }
         }
+        /// <summary>
+        /// 通知
+        /// </summary>
+        /// <param name="notifies"></param>
+        /// <param name="group"></param>
+        public void NotifyTo(List<T> notifies, string group = null)
+        {
+            if (group == null)
+            {
+                _context.Clients.All.Notify(notifies);
+            }
+            else
+            {
+                _context.Clients.Group(group).Notify(notifies);
+            }
+        }
     }
 }

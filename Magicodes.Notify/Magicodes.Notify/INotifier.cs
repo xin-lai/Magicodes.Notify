@@ -19,6 +19,12 @@ namespace Magicodes.Notify
         /// <param name="group"></param>
         void NotifyTo(T notify, string group = null);
         /// <summary>
+        /// 通知
+        /// </summary>
+        /// <param name="notifies"></param>
+        /// <param name="group"></param>
+        void NotifyTo(List<T> notifies, string group = null);
+        /// <summary>
         /// 获取通知列表
         /// </summary>
         /// <param name="wherePredicate"></param>
