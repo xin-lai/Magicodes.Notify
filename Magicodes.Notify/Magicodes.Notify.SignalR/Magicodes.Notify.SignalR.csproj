@@ -75,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\NotifyBuilder.cs" />
-    <Compile Include="Builder\NotifyGroupInfo.cs" />
     <Compile Include="Helper\NotifierHelper.cs" />
     <Compile Include="IClientNotify.cs" />
     <Compile Include="NotifyHub.cs" />

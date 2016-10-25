@@ -28,6 +28,10 @@ namespace Magicodes.Notify
         /// </summary>
         DateTime CreateTime { get; set; }
         /// <summary>
+        /// 更新时间
+        /// </summary>
+        DateTime UpdateTime { get; set; }
+        /// <summary>
         /// 链接
         /// </summary>
         string Href { get; set; }

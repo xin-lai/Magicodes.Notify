@@ -13,11 +13,11 @@ namespace Magicodes.Notify.SignalR.Builder
     /// </summary>
     public class NotifyBuilder<T> where T : INotifyInfo
     {
-        Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
+        Action<HubCallerContext, IGroupManager> OnConnected = null;
         Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         Action<HubCallerContext, IGroupManager> OnReconnected = null;
         Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
-        Func<string, INotifyInfo> OnClientNotify = null;
+        Func<string,string, HubCallerContext, IGroupManager, INotifyInfo> OnClientNotify = null;
 
         /// <summary>
         ///     创建实例
@@ -32,7 +32,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="onConnected"></param>
         /// <returns></returns>
-        public NotifyBuilder<T> WithOnConnected(Func<HubCallerContext, IGroupManager, NotifyGroupInfo> onConnected)
+        public NotifyBuilder<T> WithOnConnected(Action<HubCallerContext, IGroupManager> onConnected)
         {
             OnConnected = onConnected;
             return this;
@@ -62,7 +62,7 @@ namespace Magicodes.Notify.SignalR.Builder
         /// </summary>
         /// <param name="onClientNotify"></param>
         /// <returns></returns>
-        public NotifyBuilder<T> WithOnClientNotify(Func<string, INotifyInfo> onClientNotify)
+        public NotifyBuilder<T> WithOnClientNotify(Func<string, string, HubCallerContext, IGroupManager, INotifyInfo> onClientNotify)
         {
             OnClientNotify = onClientNotify;
             return this;

@@ -22,7 +22,7 @@ namespace Magicodes.Notify.SignalR
         {
             if (NotifierHelper.OnClientNotify != null && notifyInfo != null)
             {
-                var notify = NotifierHelper.OnClientNotify(notifyInfo.ToString());
+                var notify = NotifierHelper.OnClientNotify(notifyInfo.ToString(), group, Context, Groups);
                 if (string.IsNullOrEmpty(group))
                 {
                     Clients.All.Notify(notify);
@@ -39,17 +39,7 @@ namespace Magicodes.Notify.SignalR
         /// <returns></returns>
         public override Task OnConnected()
         {
-            if (NotifierHelper.OnConnected != null)
-            {
-                var groupInfo = NotifierHelper.OnConnected(Context, Groups);
-                if (groupInfo != null)
-                {
-                    foreach (var item in groupInfo.GroupNames)
-                    {
-                        Groups.Add(this.Context.ConnectionId, item);
-                    }
-                }
-            }
+            NotifierHelper.OnConnected?.Invoke(Context, Groups);
             return base.OnConnected();
         }
         /// <summary>

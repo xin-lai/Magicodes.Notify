@@ -14,9 +14,9 @@ namespace Magicodes.Notify.SignalR.Helper
     /// </summary>
     public static class NotifierHelper
     {
-        internal static Func<HubCallerContext, IGroupManager, NotifyGroupInfo> OnConnected = null;
+        internal static Action<HubCallerContext, IGroupManager> OnConnected = null;
         internal static Action<HubCallerContext, IGroupManager> OnDisconnected = null;
         internal static Action<HubCallerContext, IGroupManager> OnReconnected = null;
-        internal static Func<string, INotifyInfo> OnClientNotify = null;
+        internal static Func<string, string, HubCallerContext, IGroupManager, INotifyInfo> OnClientNotify = null;
     }
 }
