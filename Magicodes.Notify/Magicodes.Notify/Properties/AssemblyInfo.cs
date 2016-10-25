@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Magicodes.Notify")]
-[assembly: AssemblyDescription("Magicodes.Notify为湖南心莱信息科技有限公司封装的消息核心库。官方网址：http://xin-lai.com")]
+[assembly: AssemblyDescription("Magicodes.Notify为湖南心莱信息科技有限公司封装的消息核心库。\n\r官方网址：http://xin-lai.com \n\r开源库地址:https://github.com/xin-lai")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("湖南心莱信息科技有限公司")]
 [assembly: AssemblyProduct("Magicodes.Notify")]

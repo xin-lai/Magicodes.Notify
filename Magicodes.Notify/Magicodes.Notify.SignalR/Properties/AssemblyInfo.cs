@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Magicodes.Notify.SignalR")]
-[assembly: AssemblyDescription("Magicodes.Notify.SignalR为湖南心莱信息科技有限公司封装的SignalR消息实现库。官方网址：http://xin-lai.com")]
+[assembly: AssemblyDescription("Magicodes.Notify.SignalR为湖南心莱信息科技有限公司封装的SignalR消息实现库。\n\r官方网址：http://xin-lai.com \n\r开源库地址:https://github.com/xin-lai")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("湖南心莱信息科技有限公司")]
 [assembly: AssemblyProduct("Magicodes.Notify.SignalR")]
