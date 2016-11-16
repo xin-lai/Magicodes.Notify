@@ -14,7 +14,7 @@ namespace Magicodes.Notify.SignalR
     /// <summary>
     /// 
     /// </summary>
-    public class SignalRNotifier<T> : INotifier<T> where T : INotifyInfo
+    public class SignalRNotifier<T> : INotifier where T : INotifyInfo
     {
         /// <summary>
         /// Hub代理
@@ -56,10 +56,9 @@ namespace Magicodes.Notify.SignalR
         /// <summary>
         /// 通知
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="notify"></param>
         /// <param name="group"></param>
-        public void NotifyTo(T notify, string group = null)
+        public void NotifyTo(INotifyInfo notify, string group = null)
         {
             if (group == null)
             {
@@ -75,7 +74,7 @@ namespace Magicodes.Notify.SignalR
         /// </summary>
         /// <param name="notifies"></param>
         /// <param name="group"></param>
-        public void NotifyTo(List<T> notifies, string group = null)
+        public void NotifyTo(List<INotifyInfo> notifies, string group = null)
         {
             if (group == null)
             {

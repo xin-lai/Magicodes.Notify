@@ -10,20 +10,20 @@ namespace Magicodes.Notify
     /// <summary>
     /// 通知者
     /// </summary>
-    public interface INotifier<T> where T : INotifyInfo
+    public interface INotifier
     {
         /// <summary>
         /// 通知
         /// </summary>
         /// <param name="notify"></param>
         /// <param name="group"></param>
-        void NotifyTo(T notify, string group = null);
+        void NotifyTo(INotifyInfo notify, string group = null);
         /// <summary>
         /// 通知
         /// </summary>
         /// <param name="notifies"></param>
         /// <param name="group"></param>
-        void NotifyTo(List<T> notifies, string group = null);
+        void NotifyTo(List<INotifyInfo> notifies, string group = null);
         ///// <summary>
         ///// 获取通知列表
         ///// </summary>
