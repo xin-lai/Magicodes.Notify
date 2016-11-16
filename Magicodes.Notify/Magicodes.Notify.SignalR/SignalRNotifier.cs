@@ -38,21 +38,21 @@ namespace Magicodes.Notify.SignalR
         
         internal static Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
 
-        /// <summary>
-        /// 获取通知列表
-        /// </summary>
-        /// <param name="wherePredicate"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10)
-        {
-            if (GetNofityListByGroupFunc == null)
-            {
-                throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
-            }
-            return GetNofityListByGroupFunc(wherePredicate, pageIndex, pageSize);
-        }
+        ///// <summary>
+        ///// 获取通知列表
+        ///// </summary>
+        ///// <param name="wherePredicate"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="pageSize"></param>
+        ///// <returns></returns>
+        //public List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10)
+        //{
+        //    if (GetNofityListByGroupFunc == null)
+        //    {
+        //        throw new NotImplementedException("GetNofityListByGroup尚未实现，请使用NotifyBuilder.WithGetNofityListByGroupFunc实现!");
+        //    }
+        //    return GetNofityListByGroupFunc(wherePredicate, pageIndex, pageSize);
+        //}
         /// <summary>
         /// 通知
         /// </summary>

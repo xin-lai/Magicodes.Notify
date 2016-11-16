@@ -24,13 +24,13 @@ namespace Magicodes.Notify
         /// <param name="notifies"></param>
         /// <param name="group"></param>
         void NotifyTo(List<T> notifies, string group = null);
-        /// <summary>
-        /// 获取通知列表
-        /// </summary>
-        /// <param name="wherePredicate"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10);
+        ///// <summary>
+        ///// 获取通知列表
+        ///// </summary>
+        ///// <param name="wherePredicate"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="pageSize"></param>
+        ///// <returns></returns>
+        //List<T> GetNofityList(Expression<Func<T, bool>> wherePredicate = null, int pageIndex = 0, int pageSize = 10);
     }
 }

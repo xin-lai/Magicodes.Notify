@@ -68,16 +68,16 @@ namespace Magicodes.Notify.SignalR.Builder
             return this;
         }
 
-        /// <summary>
-        /// 设置获取通知列表的处理逻辑
-        /// </summary>
-        /// <param name="getNofityListByGroupFunc"></param>
-        /// <returns></returns>
-        public NotifyBuilder<T> WithGetNofityListByGroupFunc(Func<Expression<Func<T, bool>>, int, int, List<T>> getNofityListByGroupFunc)
-        {
-            GetNofityListByGroupFunc = getNofityListByGroupFunc;
-            return this;
-        }
+        ///// <summary>
+        ///// 设置获取通知列表的处理逻辑
+        ///// </summary>
+        ///// <param name="getNofityListByGroupFunc"></param>
+        ///// <returns></returns>
+        //public NotifyBuilder<T> WithGetNofityListByGroupFunc(Func<Expression<Func<T, bool>>, int, int, List<T>> getNofityListByGroupFunc)
+        //{
+        //    GetNofityListByGroupFunc = getNofityListByGroupFunc;
+        //    return this;
+        //}
 
         /// <summary>
         ///     确定设置
