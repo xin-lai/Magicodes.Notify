@@ -32,8 +32,8 @@
     <DocumentationFile>bin\Release\Magicodes.Notify.SignalR.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Magicodes.Notify, Version=1.0.6164.27267, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Magicodes.Notify.1.0.6164.27267\lib\net45\Magicodes.Notify.dll</HintPath>
+    <Reference Include="Magicodes.Notify, Version=1.0.6165.27408, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magicodes.Notify.1.0.6165.27408\lib\net45\Magicodes.Notify.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

@@ -74,7 +74,7 @@ namespace Magicodes.Notify.SignalR
         /// </summary>
         /// <param name="notifies"></param>
         /// <param name="group"></param>
-        public void NotifyTo(List<INotifyInfo> notifies, string group = null)
+        public void NotifyTo(IList<INotifyInfo> notifies, string group = null)
         {
             if (group == null)
             {

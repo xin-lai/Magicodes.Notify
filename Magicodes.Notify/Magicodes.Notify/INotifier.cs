@@ -23,7 +23,8 @@ namespace Magicodes.Notify
         /// </summary>
         /// <param name="notifies"></param>
         /// <param name="group"></param>
-        void NotifyTo(List<INotifyInfo> notifies, string group = null);
+        void NotifyTo(IList<INotifyInfo> notifies, string group = null);
+
         ///// <summary>
         ///// 获取通知列表
         ///// </summary>

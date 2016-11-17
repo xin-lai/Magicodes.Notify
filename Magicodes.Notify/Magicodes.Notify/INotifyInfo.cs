@@ -44,5 +44,10 @@ namespace Magicodes.Notify
         /// 百分比
         /// </summary>
         int? TaskPercentage { get; set; }
+
+        /// <summary>
+        /// 接受者
+        /// </summary>
+        string Receiver { get; set; }
     }
 }
