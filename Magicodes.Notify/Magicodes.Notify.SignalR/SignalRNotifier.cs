@@ -36,7 +36,7 @@ namespace Magicodes.Notify.SignalR
             this._context = _context;
         }
         
-        internal static Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
+        //internal static Func<Expression<Func<T, bool>>, int, int, List<T>> GetNofityListByGroupFunc = null;
 
         ///// <summary>
         ///// 获取通知列表

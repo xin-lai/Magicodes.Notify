@@ -88,7 +88,7 @@ namespace Magicodes.Notify.SignalR.Builder
             NotifierHelper.OnDisconnected = OnDisconnected;
             NotifierHelper.OnReconnected = OnReconnected;
             NotifierHelper.OnClientNotify = OnClientNotify;
-            SignalRNotifier<T>.GetNofityListByGroupFunc = GetNofityListByGroupFunc;
+            //SignalRNotifier<T>.GetNofityListByGroupFunc = GetNofityListByGroupFunc;
         }
     }
 }
